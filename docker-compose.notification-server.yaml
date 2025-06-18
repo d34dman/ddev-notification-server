@@ -1,16 +1,27 @@
 #ddev-generated
-# Simple template to demonstrate notification-server
 services:
   notification-server:
     container_name: ddev-${DDEV_SITENAME}-notification-server
-    image: ${NOTIFICATION_SERVER_DOCKER_IMAGE:-busybox:stable}
+    image: ${NOTIFICATION_SERVER_DOCKER_IMAGE:-ghcr.io/d34dman/notification-server:latest}
     command: tail -f /dev/null
-    restart: "no"
-    # These labels ensure this service is discoverable by DDEV.
+    restart: always
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: ${DDEV_APPROOT}
-
     volumes:
       - ".:/mnt/ddev_config"
       - "ddev-global-cache:/mnt/ddev-global-cache"
+    expose:
+      - 3111
+      - 8111
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTPS_EXPOSE=8111
+      - REDIS_URL=redis://redis:6379
+      - PORT=3111
+      - WS_PORT=8111
+      - LOG_LEVEL=debug
+    depends_on:
+      - redis
+    healthcheck:
+      disable: true

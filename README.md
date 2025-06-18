@@ -30,7 +30,7 @@ After installation, make sure to commit the `.ddev` directory to version control
 To change the Docker image:
 
 ```bash
-ddev dotenv set .ddev/.env.notification-server --notification-server-docker-image="busybox:stable"
+ddev dotenv set .ddev/.env.notification-server --notification-server-docker-image="ghcr.io/d34dman/notification-server:main"
 ddev add-on get d34dman/ddev-notification-server
 ddev restart
 ```
@@ -41,7 +41,7 @@ All customization options (use with caution):
 
 | Variable | Flag | Default |
 | -------- | ---- | ------- |
-| `NOTIFICATION_SERVER_DOCKER_IMAGE` | `--notification-server-docker-image` | `busybox:stable` |
+| `NOTIFICATION_SERVER_DOCKER_IMAGE` | `--notification-server-docker-image` | `ghcr.io/d34dman/notification-server:main` |
 
 ## Credits
 
