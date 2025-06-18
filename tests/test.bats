@@ -34,6 +34,8 @@ setup() {
   cd "${TESTDIR}"
   run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site
   assert_success
+  run ddev add-on get redis
+  assert_success
   run ddev start -y
   assert_success
 }
