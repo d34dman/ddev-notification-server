@@ -34,8 +34,12 @@ setup() {
   cd "${TESTDIR}"
   run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site
   assert_success
-  run ddev add-on get redis
+    # Redis add-on is required for Redis Commander
+  run ddev add-on get ddev/ddev-redis
   assert_success
+
+  export HAS_OPTIMIZED_CONFIG=false
+  
   run ddev start -y
   assert_success
 }
