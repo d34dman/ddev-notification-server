@@ -1,5 +1,8 @@
 name: notification-server
 
+dependencies:
+  - redis
+
 project_files:
   - docker-compose.notification-server.yaml
 
